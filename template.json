@@ -1,0 +1,27 @@
+{
+    "builders": [
+        {
+      "type": "docker",
+      "image": "ubuntu:xenial",
+      "commit": "true",
+        "changes": [
+          "ENTRYPOINT [\"\"]"
+        ]
+    }
+    ],
+   "provisioners": [
+      {
+        "type": "shell",
+        "script": "scripts/installNginx.sh"
+      }
+    ],
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "martin",
+          "tag": "0.1"
+        }
+      ]
+    ]
+  }
